@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "@trpc/client": "^11.0.0-rc.522",
+    "@trpc/server": "^11.0.0-rc.522"
+  },
+  "name": "work-school-simulator-backend",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "scripts": {
+    "start": "bun run main.ts"
+  }
+}
