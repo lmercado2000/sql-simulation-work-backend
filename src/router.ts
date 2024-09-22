@@ -8,6 +8,7 @@ const studentSchema = z.object({
   first_name: z.string(),
   last_name: z.string(),
   sex: z.boolean(),
+  quote: z.string(),
   created_at: z.string(),
   updated_at: z.string()
 });
