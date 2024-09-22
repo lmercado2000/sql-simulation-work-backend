@@ -601,6 +601,7 @@ const holidays = [
   "2024-03-22",
   "2024-05-23",
   "2024-05-24"
+  // and from october 1st to january 1st
 ];
 
 console.log("Seeded database");
