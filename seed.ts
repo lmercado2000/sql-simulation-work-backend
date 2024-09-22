@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 import pg from "pg";
 const dbInit = await Bun.file("./db/setup.sql").text();
 import { faker } from "@faker-js/faker";
+import type { Student } from "./src/router";
 
 const db = new pg.Client({
   user: process.env.POSTGRES_USER,
@@ -58,25 +59,38 @@ const femaleStudents = faker.helpers.multiple(createRandomFStudent, {
   count: 15
 });
 
-await db.query(
-  "INSERT INTO Students (first_name, last_name, status_id, sex) VALUES " +
-    maleStudents
-      .map(
-        (student) =>
-          `('${student.first_name}', '${student.last_name}', ${student.status_id}, ${student.sex})`
-      )
-      .join(", ")
-);
+const insertStudentsBatch = async (
+  students: {
+    first_name: string;
+    last_name: string;
+    status_id: number;
+    sex: boolean;
+  }[]
+) => {
+  const values: any[] = [];
+  const placeholders = students
+    .map((student, index) => {
+      const baseIndex = index * 4;
+      values.push(
+        student.first_name,
+        student.last_name,
+        student.status_id,
+        student.sex
+      );
+      return `($${baseIndex + 1}, $${baseIndex + 2}, $${baseIndex + 3}, $${
+        baseIndex + 4
+      })`;
+    })
+    .join(", ");
 
-await db.query(
-  "INSERT INTO Students (first_name, last_name, status_id, sex) VALUES " +
-    femaleStudents
-      .map(
-        (student) =>
-          `('${student.first_name}', '${student.last_name}', ${student.status_id}, ${student.sex})`
-      )
-      .join(", ")
-);
+  const query = `INSERT INTO Students (first_name, last_name, status_id, sex) VALUES ${placeholders}`;
+
+  await db.query(query, values);
+};
+
+// Assuming db is your database connection/pool
+await insertStudentsBatch(maleStudents);
+await insertStudentsBatch(femaleStudents);
 
 console.log("Seeded database");
 process.exit(0);
