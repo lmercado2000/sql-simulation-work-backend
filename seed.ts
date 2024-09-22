@@ -542,5 +542,44 @@ const grade12SubjectsIDs = {
   physicalEducation: physicalEducationSubjectID
 };
 
+//* Grades
+
+const grade1ID = await insertReturningID(
+  "INSERT INTO Grades (grade) VALUES (1) RETURNING id"
+);
+const grade2ID = await insertReturningID(
+  "INSERT INTO Grades (grade) VALUES (2) RETURNING id"
+);
+const grade3ID = await insertReturningID(
+  "INSERT INTO Grades (grade) VALUES (3) RETURNING id"
+);
+const grade4ID = await insertReturningID(
+  "INSERT INTO Grades (grade) VALUES (4) RETURNING id"
+);
+const grade5ID = await insertReturningID(
+  "INSERT INTO Grades (grade) VALUES (5) RETURNING id"
+);
+const grade6ID = await insertReturningID(
+  "INSERT INTO Grades (grade) VALUES (6) RETURNING id"
+);
+const grade7ID = await insertReturningID(
+  "INSERT INTO Grades (grade) VALUES (7) RETURNING id"
+);
+const grade8ID = await insertReturningID(
+  "INSERT INTO Grades (grade) VALUES (8) RETURNING id"
+);
+const grade9ID = await insertReturningID(
+  "INSERT INTO Grades (grade) VALUES (9) RETURNING id"
+);
+const grade10ID = await insertReturningID(
+  "INSERT INTO Grades (grade) VALUES (10) RETURNING id"
+);
+const grade11ID = await insertReturningID(
+  "INSERT INTO Grades (grade) VALUES (11) RETURNING id"
+);
+const grade12ID = await insertReturningID(
+  "INSERT INTO Grades (grade) VALUES (12) RETURNING id"
+);
+
 console.log("Seeded database");
 process.exit(0);
