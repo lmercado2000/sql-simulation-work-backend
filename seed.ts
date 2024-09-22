@@ -4,6 +4,10 @@ import { el, faker } from "@faker-js/faker";
 
 const dbInit = await Bun.file("./db/setup.sql").text();
 
+function insertReturningID(query: string): Promise<number> {
+  return db.query(query).then((res) => res.rows[0].id);
+}
+
 let teacherQuotes = (await Bun.file("./db/teacher_quotes.txt").text()).split(
   "\n"
 );
@@ -224,6 +228,319 @@ const randomTeachers = faker.helpers.multiple(createRandomTeacher, {
 });
 
 await insertTeachersBatch(randomTeachers);
+
+//* subjects
+
+const physicalEducationSubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Physical Education') RETURNING id"
+);
+
+//* Grade 1 subjects
+
+const mathFoundationsSubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Math Foundations') RETURNING id"
+);
+const introductionToReadingSubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Introduction to Reading') RETURNING id"
+);
+const primaryScienceSubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Primary Science') RETURNING id"
+);
+const socialSkillsSubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Social Skills') RETURNING id"
+);
+
+const grade1SubjectsIDs = {
+  mathFoundations: mathFoundationsSubjectID,
+  introductionToReading: introductionToReadingSubjectID,
+  primaryScience: primaryScienceSubjectID,
+  socialSkills: socialSkillsSubjectID,
+  physicalEducation: physicalEducationSubjectID
+};
+
+//* Grade 2 subjects
+
+const basicArithmeticSubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Basic Arithmetic') RETURNING id"
+);
+const readingFluencySubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Reading Fluency') RETURNING id"
+);
+const basicScienceSubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Basic Science') RETURNING id"
+);
+const communityStudiesSubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Community Studies') RETURNING id"
+);
+
+const grade2SubjectsIDs = {
+  basicArithmetic: basicArithmeticSubjectID,
+  readingFluency: readingFluencySubjectID,
+  basicScience: basicScienceSubjectID,
+  communityStudies: communityStudiesSubjectID,
+  physicalEducation: physicalEducationSubjectID
+};
+
+//* Grade 3 subjects
+
+const elementaryMathSubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Elementary Math') RETURNING id"
+);
+const readingAndWritingSubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Reading and Writing') RETURNING id"
+);
+const elementaryScienceSubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Elementary Science') RETURNING id"
+);
+const localHistorySubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Local History') RETURNING id"
+);
+
+const grade3SubjectsIDs = {
+  elementaryMath: elementaryMathSubjectID,
+  readingAndWriting: readingAndWritingSubjectID,
+  elementaryScience: elementaryScienceSubjectID,
+  localHistory: localHistorySubjectID,
+  physicalEducation: physicalEducationSubjectID
+};
+
+//* Grade 4 subjects
+
+const multiplicationAndDivisionSubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Multiplication and Division') RETURNING id"
+);
+const intermediateReadingSubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Intermediate Reading') RETURNING id"
+);
+const earthScienceSubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Earth Science') RETURNING id"
+);
+const stateHistorySubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('State History') RETURNING id"
+);
+
+const grade4SubjectsIDs = {
+  multiplicationAndDivision: multiplicationAndDivisionSubjectID,
+  intermediateReading: intermediateReadingSubjectID,
+  earthScience: earthScienceSubjectID,
+  stateHistory: stateHistorySubjectID,
+  physicalEducation: physicalEducationSubjectID
+};
+
+//* Grade 5 subjects
+
+const intermediateMathSubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Intermediate Math') RETURNING id"
+);
+const readingComprehensionSubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Reading Comprehension') RETURNING id"
+);
+const lifeScienceSubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Life Science') RETURNING id"
+);
+const americanHistorySubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('American History') RETURNING id"
+);
+
+const grade5SubjectsIDs = {
+  intermediateMath: intermediateMathSubjectID,
+  readingComprehension: readingComprehensionSubjectID,
+  lifeScience: lifeScienceSubjectID,
+  americanHistory: americanHistorySubjectID,
+  physicalEducation: physicalEducationSubjectID
+};
+
+//* Grade 6 subjects
+
+const preAlgebraSubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Pre-Algebra') RETURNING id"
+);
+const essayWritingSubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Essay Writing') RETURNING id"
+);
+const fundamentalsOfPhysicalScienceSubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Fundamentals of Physical Science') RETURNING id"
+);
+const worldGeographySubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('World Geography') RETURNING id"
+);
+
+const grade6SubjectsIDs = {
+  preAlgebra: preAlgebraSubjectID,
+  essayWriting: essayWritingSubjectID,
+  fundamentalsOfPhysicalScience: fundamentalsOfPhysicalScienceSubjectID,
+  worldGeography: worldGeographySubjectID,
+  physicalEducation: physicalEducationSubjectID
+};
+
+//* Grade 7 subjects
+
+const algebraIISubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Algebra II') RETURNING id"
+);
+const advancedReadingAndWritingSubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Advanced Reading and Writing') RETURNING id"
+);
+const worldHistorySubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('World History') RETURNING id"
+);
+
+const introductionToForeignLanguageSubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Introduction to Foreign Language') RETURNING id"
+);
+const artAndMusicSubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Art and Music') RETURNING id"
+);
+
+const grade7SubjectsIDs = {
+  algebraII: algebraIISubjectID,
+  advancedReadingAndWriting: advancedReadingAndWritingSubjectID,
+  worldHistory: worldHistorySubjectID,
+  introductionToForeignLanguage: introductionToForeignLanguageSubjectID,
+  artAndMusic: artAndMusicSubjectID,
+  physicalEducation: physicalEducationSubjectID
+};
+
+//* Grade 8 subjects
+
+const geometrySubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Geometry') RETURNING id"
+);
+const literatureAnalysisSubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Literature Analysis') RETURNING id"
+);
+
+const ForeignLanguageISubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Foreign Language I') RETURNING id"
+);
+
+const grade8SubjectsIDs = {
+  geometry: geometrySubjectID,
+  literatureAnalysis: literatureAnalysisSubjectID,
+  americanHistory: americanHistorySubjectID,
+  physicalEducation: physicalEducationSubjectID,
+  foreignLanguageI: ForeignLanguageISubjectID,
+  artAndMusic: artAndMusicSubjectID
+};
+
+//* Grade 9 subjects
+
+const algebraIIISubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Algebra III') RETURNING id"
+);
+const worldLiteratureSubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('World Literature') RETURNING id"
+);
+const biologySubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Biology') RETURNING id"
+);
+const civicsAndEconomicsSubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Civics and Economics') RETURNING id"
+);
+
+const foreignLanguageIISubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Foreign Language II') RETURNING id"
+);
+
+const electiveCreativeSubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Elective Creative') RETURNING id"
+);
+
+const grade9SubjectsIDs = {
+  algebraIII: algebraIIISubjectID,
+  worldLiterature: worldLiteratureSubjectID,
+  biology: biologySubjectID,
+  civicsAndEconomics: civicsAndEconomicsSubjectID,
+  foreignLanguageII: foreignLanguageIISubjectID,
+  electiveCreative: electiveCreativeSubjectID,
+  physicalEducation: physicalEducationSubjectID
+};
+
+//* Grade 10 subjects
+
+const americanLiteratureSubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('American Literature') RETURNING id"
+);
+const chemistrySubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Chemistry') RETURNING id"
+);
+
+const foreignLanguageIIISubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Foreign Language III') RETURNING id"
+);
+
+const electiveBusinessSubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Elective Business') RETURNING id"
+);
+
+const grade10SubjectsIDs = {
+  geometry: geometrySubjectID,
+  americanLiterature: americanLiteratureSubjectID,
+  chemistry: chemistrySubjectID,
+  worldHistory: worldHistorySubjectID,
+  foreignLanguageIII: foreignLanguageIIISubjectID,
+  electiveBusiness: electiveBusinessSubjectID,
+  physicalEducation: physicalEducationSubjectID
+};
+
+//* Grade 11 subjects
+
+const preCalculusSubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Pre-Calculus') RETURNING id"
+);
+const britishLiteratureSubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('British Literature') RETURNING id"
+);
+const physicsSubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Physics') RETURNING id"
+);
+
+const electiveAdvancedArtSubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Elective Advanced Art') RETURNING id"
+);
+
+const grade11SubjectsIDs = {
+  preCalculus: preCalculusSubjectID,
+  britishLiterature: britishLiteratureSubjectID,
+  physics: physicsSubjectID,
+  americanHistory: americanHistorySubjectID,
+  foreignLanguageII: foreignLanguageIIISubjectID,
+  electiveAdvancedArt: electiveAdvancedArtSubjectID,
+  physicalEducation: physicalEducationSubjectID
+};
+
+//* Grade 12 subjects
+
+const calculusSubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Calculus') RETURNING id"
+);
+const englishCompositionSubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('English Composition') RETURNING id"
+);
+const advancedScienceElectiveSubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Advanced Science Elective') RETURNING id"
+);
+const governmentAndEconomicsSubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Government and Economics') RETURNING id"
+);
+
+const foreignLanguageIVSubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Foreign Language IV') RETURNING id"
+);
+
+const electivePsychologySubjectID = await insertReturningID(
+  "INSERT INTO Subjects (name) VALUES ('Elective Psychology') RETURNING id"
+);
+
+const grade12SubjectsIDs = {
+  calculus: calculusSubjectID,
+  englishComposition: englishCompositionSubjectID,
+  advancedScienceElective: advancedScienceElectiveSubjectID,
+  governmentAndEconomics: governmentAndEconomicsSubjectID,
+  foreignLanguageIV: foreignLanguageIVSubjectID,
+  electivePsychology: electivePsychologySubjectID,
+  physicalEducation: physicalEducationSubjectID
+};
 
 console.log("Seeded database");
 process.exit(0);
