@@ -581,5 +581,27 @@ const grade12ID = await insertReturningID(
   "INSERT INTO Grades (grade) VALUES (12) RETURNING id"
 );
 
+// Dates	School Holidays
+// Aug 15, 2023	First Day of School
+// Nov 23 – 24, 2023	Thanksgiving Break
+// Dec 25, 2023 – Jan 9, 2024	Christmas Break
+// Mar 18 – 22, 2024	Spring Break
+// May 23, 2024	Last Day of School
+// May 24, 2024 – Aug 14, 2024	Summer Break
+
+const holidays = [
+  "2023-08-15",
+  "2023-11-23",
+  "2023-11-24",
+  "2023-12-25",
+  "2024-03-18",
+  "2024-03-19",
+  "2024-03-20",
+  "2024-03-21",
+  "2024-03-22",
+  "2024-05-23",
+  "2024-05-24"
+];
+
 console.log("Seeded database");
 process.exit(0);
