@@ -3,6 +3,7 @@ import Express from "express";
 import trpc from "@trpc/server";
 import cors from "cors";
 import { appRouter } from "./src/router";
+import morgan from "morgan";
 
 const App = Express();
 
@@ -12,6 +13,8 @@ const createContext = ({
   res
 }: trpcExpress.CreateExpressContextOptions) => ({}); // no context
 type Context = trpc.inferAsyncReturnType<typeof createContext>;
+
+App.use(morgan("dev"));
 
 App.use(
   cors({
