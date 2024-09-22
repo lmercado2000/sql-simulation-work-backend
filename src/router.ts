@@ -21,7 +21,6 @@ export const appRouter = router({
     .query(async () => {
       const students = (await db.query("SELECT * FROM Students"))
         .rows as Student[];
-      console.log(students[0]);
       return students;
     })
 });
