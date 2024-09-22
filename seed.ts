@@ -88,7 +88,6 @@ const insertStudentsBatch = async (
   await db.query(query, values);
 };
 
-// Assuming db is your database connection/pool
 await insertStudentsBatch(maleStudents);
 await insertStudentsBatch(femaleStudents);
 
