@@ -51,21 +51,22 @@ CREATE TABLE IF NOT EXISTS Class_students (
     PRIMARY KEY (student_id, class_id)
 );
 
--- junction table
-CREATE TABLE IF NOT EXISTS Student_exams (
-    student_id INT NOT NULL REFERENCES Students(id),
-    class_id INT NOT NULL REFERENCES Classes(id),
-    grade_rating INT NOT NULL,
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (student_id, class_id)
-);
-
 CREATE TABLE IF NOT EXISTS Subjects (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- junction table
+CREATE TABLE IF NOT EXISTS Student_exams (
+    student_id INT NOT NULL REFERENCES Students(id),
+    class_id INT NOT NULL REFERENCES Classes(id),
+    subject_id INT NOT NULL REFERENCES Subjects(id),
+    grade_rating INT NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (student_id, class_id)
 );
 
 -- junction table
