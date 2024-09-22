@@ -12,7 +12,7 @@
     "ts-node": "10.9.2"
   },
   "name": "work-school-simulator-backend",
-  "module": "index.ts",
+  "module": "main.ts",
   "type": "module",
   "devDependencies": {
     "@faker-js/faker": "^9.0.1",

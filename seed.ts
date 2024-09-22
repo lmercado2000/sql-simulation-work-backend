@@ -1,12 +1,13 @@
 import dotenv from "dotenv";
 import pg from "pg";
-const dbInit = await Bun.file("db/setup.sql").text();
+const dbInit = await Bun.file("./db/setup.sql").text();
 import { faker } from "@faker-js/faker";
 
-export const db = new pg.Client({
+const db = new pg.Client({
   user: process.env.POSTGRES_USER,
   database: process.env.POSTGRES_DB,
-  password: process.env.POSTGRES_PASSWORD
+  password: process.env.POSTGRES_PASSWORD,
+  port: 5432 // default port for PostgreSQL
 });
 
 await db.connect();
