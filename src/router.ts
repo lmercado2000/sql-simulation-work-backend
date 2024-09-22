@@ -9,8 +9,8 @@ const studentSchema = z.object({
   last_name: z.string(),
   sex: z.boolean(),
   quote: z.string(),
-  created_at: z.string(),
-  updated_at: z.string()
+  created_at: z.date(),
+  updated_at: z.date()
 });
 
 export type Student = z.infer<typeof studentSchema>;
@@ -21,6 +21,7 @@ export const appRouter = router({
     .query(async () => {
       const students = (await db.query("SELECT * FROM Students"))
         .rows as Student[];
+      console.log(students[0]);
       return students;
     })
 });
